@@ -1,8 +1,6 @@
 const Gpio = require('onoff').Gpio;
-const led = new Gpio(13, 'in'); // gpio 4 as in
-const led2 = new Gpio(19, 'in'); // gpio 4 as in
-const led3 = new Gpio(18, 'in'); // gpio 4 as in
-const led4 = new Gpio(16, 'in'); // gpio 4 as in
+const motion = new Gpio(13, 'in'); // gpio 4 as in
+const LED = new Gpio(25, 'out'); // gpio 4 as out
 
 
 //   socket.emit('chat message', $('#m').val());
@@ -12,19 +10,26 @@ const led4 = new Gpio(16, 'in'); // gpio 4 as in
 // }
 
 // lock()
-let currentValue = led2.readSync();
+let currentValue = motion.readSync();
 console.log("currentValue" + currentValue)
 
-let lastValue = led2.readSync();
+let lastValue = motion.readSync();
 console.log("lastValue" + lastValue)
 
 
 iv = setInterval(function() {
-currentValue = led.readSync();
+currentValue = motion.readSync();
 if (currentValue != lastValue){
     console.log("tampered!!!!!!")
     console.log(currentValue + " " +lastValue)
     lastValue = currentValue
+    const timer = setInterval(()=>{
+        if (LED.readSync() === 0) { // if current pin state is 0 (off)
+          LED.writeSync(1); // make it 1 (on)
+        } else {
+          LED.writeSync(0); // make it 0 (off)
+        }
+      }, 1000);
 
 }
 }, 200);
