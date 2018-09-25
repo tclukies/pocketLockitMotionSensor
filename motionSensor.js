@@ -20,7 +20,7 @@ console.log("lastValue" + lastValue)
 
 
 iv = setInterval(function() {
-currentValue = led2.readSync();
+currentValue = led.readSync();
 if (currentValue != lastValue){
     console.log("tampered!!!!!!")
     console.log(currentValue + " " +lastValue)
