@@ -23,6 +23,8 @@ iv = setInterval(function() {
 currentValue = led2.readSync();
 if (currentValue != lastValue){
     console.log("tampered!!!!!!")
+    console.log(currentValue + " " +lastValue)
     lastValue = currentValue
+
 }
 }, 200);
