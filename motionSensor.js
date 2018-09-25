@@ -12,12 +12,17 @@ const led4 = new Gpio(16, 'out'); // gpio 4 as out
 // }
 
 // lock()
+let currentValue = led2.readSync();
+console.log("currentValue" + currentValue)
+
+let lastValue = led2.readSync();
+console.log("lastValue" + lastValue)
+
 
 iv = setInterval(function() {
-    console.log((led.readSync()*100))
-    console.log((led2.readSync()*100))
-    console.log((led3.readSync()*100))
-    console.log((led4.readSync()*100))
-    console.log(("---"))
-
+currentValue = led2.readSync();
+if (currentValue != lastValue){
+    console.log("tampered!!!!!!")
+    lastValue = currentValue
+}
 }, 200);
