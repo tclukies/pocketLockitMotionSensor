@@ -34,13 +34,13 @@ if (currentValue != lastValue){
 }
 }, 200);
 
-iv2 = setInterval(function() {
+// iv2 = setInterval(function() {
    
-    console.log(led.readSync())
-    console.log(led2.readSync())
-    console.log(led3.readSync())
-    console.log(led4.readSync())
-    console.log("_________")
+//     console.log(led.readSync())
+//     // console.log(led2.readSync())
+//     // console.log(led3.readSync())
+//     // console.log(led4.readSync())
+//     console.log("_________")
 
-    }, 200);
+//     }, 200);
 
