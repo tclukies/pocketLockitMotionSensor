@@ -1,30 +1,26 @@
-const Gpio = require('pigpio').Gpio;
+var io= require("socket.io-client")
+const Gpio = require('onoff').Gpio;
+const LED = new Gpio(4, 'out'); // gpio 4 as out
 
-// The number of microseconds it takes sound to travel 1cm at 20 degrees celcius
-const MICROSECDONDS_PER_CM = 1e6/34321;
+var socket = io(process.env.SOCKET_HOST || "http://localhost:3000");
+//   socket.emit('chat message', $('#m').val());
 
-const trigger = new Gpio(23, {mode: Gpio.OUTPUT});
-const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true});
+// function lock(){
+//     socket.emit("lock", 99)
+// }
 
-trigger.digitalWrite(0); // Make sure trigger is low
+// lock()
 
-const watchHCSR04 = () => {
-  let startTick;
+socket.on("unlock now", onUnlock)
 
-  echo.on('alert', (level, tick) => {
-    if (level == 1) {
-      startTick = tick;
-    } else {
-      const endTick = tick;
-      const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
-      console.log(diff / 2 / MICROSECDONDS_PER_CM);
-    }
-  });
-};
+function onUnlock(id){
+    console.log("onUnlock", id)
+    LED.writeSync(0);
+}
 
-watchHCSR04();
+socket.on("lock now", onLock)
 
-// Trigger a distance measurement once per second
-setInterval(() => {
-  trigger.trigger(10, 1); // Set trigger high for 10 microseconds
-}, 1000);
+function onLock(id){
+    console.log("onLock", id)
+    LED.writeSync(1)
+}
