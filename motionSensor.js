@@ -56,10 +56,10 @@ const led4 = new Gpio(16, 'out'); // gpio 4 as out
 // lock()
 
 iv = setInterval(function() {
-    console.log((led.writeSync()*100))
-    console.log((led2.writeSync()*100))
-    console.log((led3.writeSync()*100))
-    console.log((led4.writeSync()*100))
+    console.log((led.readSync()*100))
+    console.log((led2.readSync()*100))
+    console.log((led3.readSync()*100))
+    console.log((led4.readSync()*100))
     console.log(("---"))
 
 }, 200);
