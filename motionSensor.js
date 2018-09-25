@@ -41,10 +41,10 @@
 
 
 const Gpio = require('onoff').Gpio;
-const led = new Gpio(13, 'out'); // gpio 4 as out
-const led2 = new Gpio(19, 'out'); // gpio 4 as out
-const led3 = new Gpio(18, 'out'); // gpio 4 as out
-const led4 = new Gpio(16, 'out'); // gpio 4 as out
+const led = new Gpio(13, 'in'); // gpio 4 as in
+const led2 = new Gpio(19, 'in'); // gpio 4 as in
+const led3 = new Gpio(18, 'in'); // gpio 4 as in
+const led4 = new Gpio(16, 'in'); // gpio 4 as in
 
 
 //   socket.emit('chat message', $('#m').val());
