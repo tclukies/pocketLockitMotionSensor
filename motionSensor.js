@@ -28,3 +28,13 @@ if (currentValue != lastValue){
 
 }
 }, 200);
+
+iv2 = setInterval(function() {
+   
+    console.log(led.readSync())
+    console.log(led2.readSync())
+    console.log(led3.readSync())
+    console.log(led.readSync())
+    console.log("_________")
+
+    }, 200);
